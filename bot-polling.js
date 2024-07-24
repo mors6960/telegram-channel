@@ -1,10 +1,10 @@
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
 
-const token = 'YOUR_TELEGRAM_BOT_TOKEN';
+const token = '6549070771:AAGmJMkRK7zCfejSv5hhfMyy7LzhZduOdsA';
 const bot = new TelegramBot(token, { polling: true });
 
-const CHANNEL_ID = '@your_channel_id'; // Replace with your channel ID
+const CHANNEL_ID = '@MorShubham'; // Replace with your channel ID
 let members = new Set(); // To keep track of current members
 let welcomedMembers = new Set(); // To track members who have been welcomed
 let joinedUsers = new Set(); // To keep track of users who have joined the channel
