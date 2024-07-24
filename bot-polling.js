@@ -16,8 +16,17 @@ const fetchChannelMembers = async () => {
     // Check for new members
     const newJoiners = newMembers.filter(member => !members.includes(member));
     if (newJoiners.length) {
-      newJoiners.forEach(memberId => {
-        bot.sendMessage(memberId, `Welcome to the channel ${CHANNEL_ID}!`);
+      newJoiners.forEach(async (memberId) => {
+        try {
+          const userInfo = await axios.get(`https://api.telegram.org/bot${token}/getChatMember?chat_id=${CHANNEL_ID}&user_id=${memberId}`);
+          const username = userInfo.data.result.user.username || 'No username';
+          console.log(`New member: ${username}`);
+
+          await bot.sendMessage(memberId, `Welcome to the channel ${CHANNEL_ID}!`);
+          await bot.sendMessage(memberId, `Thank you for joining the channel ${CHANNEL_ID}!`);
+        } catch (error) {
+          console.error('Error fetching user info or sending message:', error.message);
+        }
       });
     }
 
