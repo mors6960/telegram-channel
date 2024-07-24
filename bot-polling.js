@@ -147,7 +147,7 @@ const fetchChannelMembers = async () => {
 };
 
 // Polling interval to check for new members every minute
-setInterval(fetchChannelMembers, 60000);
+setInterval(fetchChannelMembers, 5000);
 
 // Command to trigger joining instructions
 bot.onText(/\/join_channel/, (msg) => {
